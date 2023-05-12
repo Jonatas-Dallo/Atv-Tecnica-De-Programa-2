@@ -5,6 +5,7 @@ import CadastroRg from "./cadastroRg";
 
 export default class CadastrarDocumentosCliente extends Processo {
     private cliente: Cliente
+    
     constructor(cliente: Cliente) {
         super()
         this.cliente = cliente

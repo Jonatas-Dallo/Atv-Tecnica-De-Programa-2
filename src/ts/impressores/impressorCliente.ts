@@ -2,6 +2,7 @@ import Impressor from "../interfaces/impressor";
 import Cliente from "../modelos/cliente";
 import ImpressorDocumentos from "./impressorDocumentos";
 import ImpressorEndereco from "./impressorEndereco";
+import ImpressorPendentes from "./impressorDependentes";
 
 export default class ImpressaorCliente implements Impressor {
     private cliente: Cliente
@@ -18,9 +19,12 @@ export default class ImpressaorCliente implements Impressor {
             + `| Data de nascimento: ${this.cliente.DataNascimento.toLocaleDateString()}\n`
             + `| Data de cadastro: ${this.cliente.DataCadastro.toLocaleDateString()}`
 
-        this.impressor = new ImpressorEndereco(this.cliente.Endereco)
+        this.impressor = new ImpressorPendentes(this.cliente.Dependentes)
         impressao = impressao + `\n${this.impressor.imprimir()}`
 
+        this.impressor = new ImpressorEndereco(this.cliente.Endereco)
+        impressao = impressao + `\n${this.impressor.imprimir()}`
+        let espaço = ``
         this.impressor = new ImpressorDocumentos(this.cliente.Documentos)
         impressao = impressao + `\n${this.impressor.imprimir()}`
 
