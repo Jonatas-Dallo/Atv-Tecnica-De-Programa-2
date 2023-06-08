@@ -34,20 +34,28 @@ endereco.pais = `Brasil`
 endereco.codigoPostal = `22220-000`
 cliente.endereco = endereco
 
+//-------------------------------
+
 let dependente = new Cliente()
+
 dependente.nome = `Isabel Cristina Leopoldina Augusta Micaela`
 dependente.nomeSocial = `Princesa Isabel`
 dependente.dataCadastro = new Date(1921, 10, 14)
 dependente.dataNascimento = new Date(1846, 6, 29)
+
+let documentoDependente = new Documento()
+documentoDependente.numero = "109.876.543-21"
+documentoDependente.tipo = TipoDocumento.CPF;
+documentoDependente.dataExpedicao = new Date(2023, 3, 1);
+dependente.documentos.push(documento)
+
 dependente.endereco = (cliente.endereco.clonar() as Endereco)
+
 dependente.telefones = [];
 cliente.telefones.forEach((telefone: Telefone) => {
   dependente.telefones.push(telefone.clonar() as Telefone);
 });
-dependente.documentos = [];
-cliente.documentos.forEach((documentos: Documento) => {
-  dependente.documentos.push(documento.clonar() as Documento);
-});
+
 dependente.titular = cliente
 cliente.dependentes.push(dependente)
 
