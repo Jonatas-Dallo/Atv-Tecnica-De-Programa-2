@@ -26,5 +26,9 @@ export default class Documento implements Prototipo{
         let documento = new Documento(this.numero, this.tipo, this.dataExpedicao)
         return documento
     }
+
+    public mudar_numero(novo_num:string) {
+        return this.numero = novo_num
+    }
     
 }

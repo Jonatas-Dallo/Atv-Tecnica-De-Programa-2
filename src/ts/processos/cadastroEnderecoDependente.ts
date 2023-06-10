@@ -3,6 +3,7 @@ import Cliente from "../modelos/cliente";
 import Endereco from "../modelos/endereco";
 import Documento from "../modelos/documento";
 import CadastrarDocumentosDependente from "./cadastrarDocumentoDependente";
+import CadastrarDocumentosCliente from "./cadastrarDocumentosCliente";
 
 export default class CadastroEnderecoDependente extends Processo {
     private cliente: Cliente
@@ -19,15 +20,8 @@ export default class CadastroEnderecoDependente extends Processo {
         
         let enderecoClonado = this.titular.Endereco.clonar() as Endereco
         this.cliente.Endereco = enderecoClonado;
-        
-        let documentoClonado: Documento[] = []
 
-        this.titular.Documentos.forEach((documentos: Documento) => {
-            documentoClonado.push(documentos.clonar() as Documento);
-        });
-
-        this.processo = new CadastrarDocumentosDependente(this.cliente, documentoClonado);
+        this.processo = new CadastrarDocumentosCliente(this.cliente)
         this.processo.processar();
     }
-
 }

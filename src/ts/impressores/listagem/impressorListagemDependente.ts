@@ -3,6 +3,7 @@ import Cliente from "../../modelos/cliente";
 import ImpressorTitular from "../impressaoTitular";
 import ImpressorDocumentos from "../impressorDocumentos";
 import ImpressorEndereco from "../impressorEndereco";
+import ImpressorTelefones from "../impressorTelefones";
 
 export default class ImpressorListagemDependente implements Impressor {
     private dependente: Cliente
@@ -18,6 +19,9 @@ export default class ImpressorListagemDependente implements Impressor {
             + `| Data de cadastro: ${this.dependente.DataCadastro}\n`
 
             this.impressor = new ImpressorTitular(this.dependente.Titular)
+            impressao = impressao + `\n${this.impressor.imprimir()}`
+
+            this.impressor = new ImpressorTelefones(this.dependente.Telefones)
             impressao = impressao + `\n${this.impressor.imprimir()}`
 
             this.impressor = new ImpressorEndereco(this.dependente.Endereco)

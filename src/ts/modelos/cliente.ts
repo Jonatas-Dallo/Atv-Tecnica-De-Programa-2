@@ -32,4 +32,6 @@ export default class Cliente {
 
     public set Endereco(endereco: Endereco) { this.endereco = endereco }
     public set SetTitular(titular: Cliente) { this.titular = titular }
+    public set Nome(nome: string) {this.nome = nome}
+    public set NomeSocial(nomeSocial: string) {this.nomeSocial = nomeSocial}
 }

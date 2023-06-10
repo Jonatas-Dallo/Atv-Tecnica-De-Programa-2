@@ -1,6 +1,7 @@
 import Processo from "../abstracoes/processo";
 import Armazem from "../dominio/armazem";
 import Cliente from "../modelos/cliente";
+import CadastrarDocumentosCliente from "./cadastrarDocumentosCliente";
 import CadastroEnderecoDependente from "./cadastroEnderecoDependente";
 
 export default class CadastroClienteDependente extends Processo {

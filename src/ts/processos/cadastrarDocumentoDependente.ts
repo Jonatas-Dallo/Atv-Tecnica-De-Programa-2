@@ -2,7 +2,7 @@ import Processo from "../abstracoes/processo";
 import MenuTipoDocumento from "../menus/menuTipoDocumento";
 import Cliente from "../modelos/cliente";
 import Documento from "../modelos/documento";
-import CadastroRgPendente from "./cadastroRgPendente";
+import CadastroRgPendente from "../processos/tipos/cadastroRgPendente";
 
 export default class CadastrarDocumentosDependente extends Processo {
     private cliente: Cliente

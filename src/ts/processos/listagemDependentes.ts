@@ -28,8 +28,7 @@ export default class ListagemDependentes extends Processo {
         console.log("")
         let opcao = this.entrada.receberNumero('Selecione o número de uma das opções:') - 1
         let titular = clientes[opcao]
-        
-
+    
         console.log("****************************")
         this.impressor = new ImpressorListagemDependentes(titular.Dependentes)
         console.log(this.impressor.imprimir())
@@ -37,7 +36,7 @@ export default class ListagemDependentes extends Processo {
 
     private titular(cliente: Cliente): boolean {
         let verificacao = false
-        if (cliente.Titular == undefined) {
+        if (cliente.Titular != undefined) {
             verificacao = true
         }
         return verificacao
