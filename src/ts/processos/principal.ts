@@ -3,7 +3,7 @@ import MenuPrincipal from "../menus/menuPricipal"
 import TipoCadastroCliente from "./tipoCadastroCliente"
 import TipoDeletarClientes from "./tipoDeletarClientes"
 import TipoEditarCliente from "./tipoEditarCliente"
-import TipoListagemClientes from "./tipoListagemClientes"
+import TipoListagemClientes from "./tipoListagemClientes" 
 
 export default class Principal extends Processo {
     constructor() {
