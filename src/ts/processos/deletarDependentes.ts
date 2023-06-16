@@ -18,21 +18,6 @@ export default class ExcluirDependente extends Processo{
         this.processo = new ListagemDependentes()
         this.processo.processar()
 
-
-        console.clear()
-        const armazem = Armazem.InstanciaUnica;
-        const clientes = armazem.Clientes;
-        clientes.forEach((cliente) => {
-            if(this.Titular(cliente)){
-                console.log("------------------------------------------------------------------")
-                console.log(`Nome: ${cliente.Nome}`);
-                console.log(`Nome Social: ${cliente.NomeSocial}`)
-                cliente.Documentos.forEach((documento) => {
-                    console.log(`Numero de documento: ${documento.Numero}`)
-                })
-            }
-          });
-
         let numeroDocumento = this.entrada.receberTexto(`Digite o numero do documento do dependente: `)
 
         this.clientes.forEach((cliente,indice )=> {
@@ -45,7 +30,7 @@ export default class ExcluirDependente extends Processo{
         })
 
         if(this.indice === -1){
-            console.log(`Dependente não encontrado.`);
+            console.log(`Dependente não encontrado...`);
         }else{
 
             let i = this.titular.Dependentes.findIndex(dependente => 
@@ -55,7 +40,7 @@ export default class ExcluirDependente extends Processo{
             );
 
             if(i === -1){
-                console.log("Erro.");
+                console.log("Erro");
             }else{
                 this.clientes.splice(this.indice, 1)
                 this.titular.Dependentes.splice(i, 1)
@@ -63,12 +48,5 @@ export default class ExcluirDependente extends Processo{
 
         }
 
-    }
-    private Titular(cliente: Cliente): boolean {
-        let verificacao = false
-        if (cliente.Titular != undefined) {
-            verificacao = true
-        }
-        return verificacao
     }
 }
