@@ -14,12 +14,6 @@ export const entidadeCliente = db.define("clientes", {
         type: DataTypes.STRING },  
     dependente: {
         type: DataTypes.STRING },
-    documento: {
-        type: DataTypes.STRING },
-    endereco: {
-        type: DataTypes.STRING },
-    telefone: {
-        type: DataTypes.STRING },
     cpf: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -38,16 +32,6 @@ export const entidadeDependente = db.define("dependentes", {
     nomeSocial: {
         type: DataTypes.STRING
     },
-    documento: {
-        type: DataTypes.STRING,
-        allowNull: false 
-    },
-    endereco: {
-        type: DataTypes.STRING 
-    },
-    telefone: {
-        type: DataTypes.STRING
-    },
     cpf: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -60,24 +44,15 @@ export const entidadeAcomodacoes = db.define("acomodacoes", {
         autoIncrement: true,
         primaryKey: true,
     },
-    nome_acomodaçao: {
+    quarto: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    cama_solteiro: {
+    tipo: {
         type: DataTypes.INTEGER
     },
-    cama_casal: {
-        type: DataTypes.INTEGER
-    },
-    suite: {
-        type: DataTypes.INTEGER
-    },
-    garagem: {
-        type: DataTypes.INTEGER
-    },
-    climatizacao: {
-        type: DataTypes.BOOLEAN
+    disponibilidade: {
+        type: DataTypes.STRING
     },
 })
 
