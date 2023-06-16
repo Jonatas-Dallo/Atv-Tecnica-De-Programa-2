@@ -1,10 +1,13 @@
 import Processo from "../abstracoes/processo";
 import MenuTipoDocumento from "../menus/menuTipoDocumento";
 import Cliente from "../modelos/cliente";
-import CadastroRg from "./cadastroRg";
+import CadastroCPF from "./tipos/cadastroCpf";
+import CadastroPassaporte from "./tipos/cadastroPassaporte";
+import CadastroRg from "./tipos/cadastroRg";
 
-export default class CadastroDocumentosCliente extends Processo {
+export default class CadastrarDocumentosCliente extends Processo {
     private cliente: Cliente
+    
     constructor(cliente: Cliente) {
         super()
         this.cliente = cliente
@@ -19,7 +22,15 @@ export default class CadastroDocumentosCliente extends Processo {
             this.opcao = this.entrada.receberNumero('Qual opção desejada?')
             switch (this.opcao) {
                 case 1:
+                    this.processo = new CadastroCPF(this.cliente)
+                    this.processo.processar()
+                    break
+                case 2:
                     this.processo = new CadastroRg(this.cliente)
+                    this.processo.processar()
+                    break
+                case 3:
+                    this.processo = new CadastroPassaporte(this.cliente)
                     this.processo.processar()
                     break
                 case 0:

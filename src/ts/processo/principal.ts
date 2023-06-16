@@ -1,9 +1,12 @@
 import Processo from "../abstracoes/processo"
 import MenuPrincipal from "../menus/menuPricipal"
-import TipoCadastroCliente from "./tipoCadastroCliente"
-import TipoDeletarClientes from "./tipoDeletarClientes"
-import TipoEditarCliente from "./tipoEditarCliente"
-import TipoListagemClientes from "./tipoListagemClientes"
+import cadastroHospedagem from "../processos/cadastroHospedagem"
+import ListagemAcomodacoes from "../processos/listagemAcomodacoes"
+import ListagemHospedagem from "../processos/listagemHospedage"
+import TipoCadastroCliente from "../processos/tipoCadastroCliente"
+import TipoDeletarClientes from "../processos/tipoDeletarClientes"
+import TipoEditarCliente from "../processos/tipoEditarCliente"
+import TipoListagemClientes from "../processos/tipoListagemClientes"
 
 export default class Principal extends Processo {
     constructor() {
@@ -31,12 +34,25 @@ export default class Principal extends Processo {
                 this.processo = new TipoDeletarClientes()
                 this.processo.processar()
                 break
+            case 5:
+                this.processo = new ListagemAcomodacoes()
+                this.processo.processar()
+                break;
+            case 6:
+                this.processo = new cadastroHospedagem()
+                this.processo.processar()
+                break;
+            case 7:
+                this.processo = new ListagemHospedagem()
+                this.processo.processar()
+                break      
             case 0:
                 this.execucao = false
                 console.log('Até logo!')
                 console.clear()
                 break
             default:
+                console.clear()
                 console.log('Opção não entendida :(')
         }
     }

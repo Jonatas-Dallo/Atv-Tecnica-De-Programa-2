@@ -1,6 +1,7 @@
 import { TipoDocumento } from "../enumeracoes/TipoDocumento"
+import Prototipo from "../interfaces/prototipo"
 
-export default class Documento {
+export default class Documento implements Prototipo{
     private numero: string
     private tipo: TipoDocumento
     private dataExpedicao: Date
@@ -19,6 +20,15 @@ export default class Documento {
     }
     public get DataExpedicao(){
         return this.dataExpedicao
+    }
+
+    public clonar(): Prototipo {
+        let documento = new Documento(this.numero, this.tipo, this.dataExpedicao)
+        return documento
+    }
+
+    public mudar_numero(novo_num:string) {
+        return this.numero = novo_num
     }
     
 }

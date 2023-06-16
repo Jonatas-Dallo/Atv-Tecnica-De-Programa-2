@@ -2,6 +2,11 @@
   "dependencies": {
     "@types/node": "^18.0.0",
     "@types/prompt-sync": "^4.1.1",
-    "prompt-sync": "^4.2.0"
+    "axios": "^1.4.0",
+    "mysql": "^2.18.1",
+    "primereact": "^9.5.0",
+    "prompt-sync": "^4.2.0",
+    "react": "^18.2.0",
+    "sequelize": "^6.32.0"
   }
 }

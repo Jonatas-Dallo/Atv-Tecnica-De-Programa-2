@@ -25,4 +25,14 @@ export default class Acomodacao {
     public get Climatizacao() { return this.climatizacao }
     public get Garagem() { return this.garagem }
 
+    public static CriaçãoSimultanea(acomodacao: Acomodacao): Acomodacao {
+        return new Acomodacao(
+            acomodacao.NomeAcomadacao,
+            acomodacao.CamaSolteiro,
+            acomodacao.CamaCasal,
+            acomodacao.Suite,
+            acomodacao.Climatizacao,
+            acomodacao.Garagem
+        )
+    }
 }

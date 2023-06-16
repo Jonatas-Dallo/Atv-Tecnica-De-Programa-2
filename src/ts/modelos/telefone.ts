@@ -1,4 +1,6 @@
-export default class Telefone {
+import Prototipo from "../interfaces/prototipo"
+
+export default class Telefone implements Prototipo{
     private ddd: string
     private numero: string
     constructor(ddd: string, numero: string) {
@@ -7,4 +9,19 @@ export default class Telefone {
     }
     public get Ddd() { return this.ddd }
     public get Numero() { return this.numero }
+
+    public clonar(): Prototipo {
+        let telefones = new Telefone(this.ddd, this.numero)
+        return telefones
+    }
+
+    public mudar_ddd(novo_ddd:string) {
+        return this.ddd = novo_ddd
+        
+    }
+
+    public mudar_telefone(novo_num:string) {
+        return this.numero = novo_num
+        
+    }
 }
