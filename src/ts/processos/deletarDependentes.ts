@@ -1,19 +1,29 @@
 import Processo from "../abstracoes/processo";
 import Armazem from "../dominio/armazem";
 import Cliente from "../modelos/cliente";
+import ListagemDependentes from "./listagemDependentes";
 
-export default class DeletarDependentes extends Processo {
-    private clientes: Cliente[]
-    constructor() {
+export default class ExcluirDependente extends Processo{
+    private clientes!: Cliente[]
+    private titular!:Cliente
+    private indice:number = -1
+
+    constructor(){
         super()
         this.clientes = Armazem.InstanciaUnica.Clientes
     }
+
     processar(): void {
+
+        this.processo = new ListagemDependentes()
+        this.processo.processar()
+
+
         console.clear()
         const armazem = Armazem.InstanciaUnica;
         const clientes = armazem.Clientes;
         clientes.forEach((cliente) => {
-            if(this.titular(cliente)){
+            if(this.Titular(cliente)){
                 console.log("------------------------------------------------------------------")
                 console.log(`Nome: ${cliente.Nome}`);
                 console.log(`Nome Social: ${cliente.NomeSocial}`)
@@ -22,27 +32,39 @@ export default class DeletarDependentes extends Processo {
                 })
             }
           });
-        console.log("------------------------------------------------------------------")
-        console.log("")
-        this.numero = this.entrada.receberNumero('Insira o número do documento do dependente que quer excluir: ')
-        this.clientes.forEach(cliente => {
-            cliente.Dependentes.map(dependente => {
-                dependente.Documentos.map(doc => {
-                    if(parseInt(doc.Numero) == this.numero) {
-                        cliente.Dependentes.splice(cliente.Dependentes.indexOf(dependente), 1);
-                    }
-                })
-            })
- 
-            cliente.Documentos.map(item => {
-                if(parseInt(item.Numero) == this.numero) {
-                    let index = this.clientes.indexOf(cliente)
-                    this.clientes.splice(index, 1)
+
+        let numeroDocumento = this.entrada.receberTexto(`Digite o numero do documento do dependente: `)
+
+        this.clientes.forEach((cliente,indice )=> {
+            cliente.Documentos.forEach( documento => {
+                if( documento.Numero === numeroDocumento ){
+                    this.indice = indice
+                    this.titular = cliente.Titular
                 }
             })
         })
+
+        if(this.indice === -1){
+            console.log(`Dependente não encontrado.`);
+        }else{
+
+            let i = this.titular.Dependentes.findIndex(dependente => 
+                dependente.Documentos.find(documento => 
+                    documento.Numero === numeroDocumento
+                )
+            );
+
+            if(i === -1){
+                console.log("Erro.");
+            }else{
+                this.clientes.splice(this.indice, 1)
+                this.titular.Dependentes.splice(i, 1)
+            }
+
+        }
+
     }
-    private titular(cliente: Cliente): boolean {
+    private Titular(cliente: Cliente): boolean {
         let verificacao = false
         if (cliente.Titular != undefined) {
             verificacao = true
