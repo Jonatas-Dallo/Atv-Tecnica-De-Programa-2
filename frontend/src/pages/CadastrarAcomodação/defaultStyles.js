@@ -23,8 +23,7 @@ export const Card = styled.div`
 export const Title = styled.p`
     color: #F18524;
     display: flex;
-    margin-top: 5%;
-    margin-bottom: 10%;
+    margin-top: -3%;
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 400;
@@ -56,7 +55,7 @@ export const Select = styled.select`
 export const InputField = styled.input`
     min-width: 470px;
     height: 50px;
-    margin-bottom: 5%;
+    margin-bottom: 4%;
 
     padding-left: 30px;
 
