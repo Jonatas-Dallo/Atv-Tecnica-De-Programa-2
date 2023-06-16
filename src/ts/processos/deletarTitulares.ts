@@ -17,20 +17,6 @@ export default class ExcluirTitular extends Processo {
         this.processo = new ListagemTitulares()
         this.processo.processar()
 
-        console.clear()
-        const armazem = Armazem.InstanciaUnica;
-        const clientes = armazem.Clientes;
-        clientes.forEach((cliente) => {
-            if(this.Titular(cliente)){
-                console.log("------------------------------------------------------------------")
-                console.log(`Nome: ${cliente.Nome}`);
-                console.log(`Nome Social: ${cliente.NomeSocial}`)
-                cliente.Documentos.forEach((documento) => {
-                    console.log(`Numero de documento: ${documento.Numero}`)
-                })
-            }
-          });
-
         let numeroDocumento = this.entrada.receberTexto(`Digite o numero do documento do titular: `)
         let indice = this.clientes.findIndex((cliente: Cliente) => cliente.Documentos.find((documento: Documento) => documento.Numero === numeroDocumento))
         let filtrados = this.clientes.filter(cliente => (cliente.Documentos.find((documento: Documento) => documento.Numero === numeroDocumento )));
@@ -53,19 +39,11 @@ export default class ExcluirTitular extends Processo {
         });
 
         if (indice === -1) {
-            console.log(`Titular não encontrado...`);
+            console.log(`Titular não encontrado.`);
         } else {
             this.clientes.splice(indice, 1)
-            console.log(`Titular com documento de numero ${numeroDocumento} excluido com sucessso...`);
+            console.log(`Exclusão realizada com sucesso.`);
         }
 
-    }
-
-    private Titular(cliente: Cliente): boolean {
-        let verificacao = false
-        if (cliente.Titular == undefined) {
-            verificacao = true
-        }
-        return verificacao
     }
 }
